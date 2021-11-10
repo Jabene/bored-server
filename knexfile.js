@@ -34,18 +34,14 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false},
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL + '?ssl=true&ssl=no-verify',
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
       directory: './api/migrations',
-      tableName: 'knex_migrations'
     },
     seeds: {
       directory: './api/seeds'
