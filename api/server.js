@@ -30,13 +30,13 @@ server.get('/log-in', ( req, res ) => {
 })
 
 server.post('/users', ( req, res ) => {
-  const user = request.body
+  const user = req.body
   db('users')
     .insert({
       first_name: user.firstName,
       last_name: user.lastName,
       email: user.email,
-      password: user.password
+      pword: user.password
     })
     .then(() => {
       response.json('Account Created!')
