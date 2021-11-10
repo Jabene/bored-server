@@ -39,7 +39,7 @@ server.post('/users', ( req, res ) => {
       pword: user.password
     })
     .then(() => {
-      response.json('Account Created!')
+      res.json('Account Created!')
     })
 })
 
