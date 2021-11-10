@@ -30,7 +30,7 @@ server.get('/log-in/:email/:password', ( req, res ) => {
       password: password
     })
     .select()
-    .then(user => res.json( `user: ${user} email: ${email} password: ${password}` ))
+    .then(user => res.json( user ))
 })
 
 server.post('/users', ( req, res ) => {
