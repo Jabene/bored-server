@@ -38,9 +38,7 @@ server.post('/users', ( req, res ) => {
       email: user.email,
       password: user.password
     })
-    .then(() => {
-      res.json('Account Created!')
-    })
+    .then(() => res.json('Account Created!'))
 })
 
 module.exports = server;
