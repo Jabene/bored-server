@@ -14,12 +14,23 @@ server.get('/', (req, res) => {
   res.send('Welcom to the Todo app server')
 })
 
-server.get('/todos', (req, res) => {
-  //GET all todos
+server.get('/users', (req, res) => {
+  db('users').select()
+    .then(users => response.json(users))
 })
 
-server.post('/todos', (req, res) => {
-  //POST a todo
+server.post('/users', (req, res) => {
+  const user = request.body
+  db('users')
+    .insert({
+      first_name: user.firstName,
+      last_name: user.lastName,
+      email: user.email,
+      password: user.password
+    })
+    .then(() => {
+      response.json('Account Created!')
+    })
 })
 
 module.exports = server;
