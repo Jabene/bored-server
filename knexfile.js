@@ -36,9 +36,8 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'dc2sr05gc53hrk',
-      user:     'brqonsulpcahmw',
-      password: '4b1aae0560ae1ddaa2884c26e0394770c31821d6f8ccf166e2ae921da893f985'
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false},
     },
     pool: {
       min: 2,
