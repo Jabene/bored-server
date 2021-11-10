@@ -23,7 +23,7 @@ server.get('/users', ( req, res ) => {
 
 server.post('/log-in', ( req, res ) => {
   const credentials = req.body
-  db('users')
+  db('users').select()
     .where('email', credentials.email)
     .where('password', credentials.password)
     .then(user => res.json( user ))
