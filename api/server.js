@@ -2,7 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const db = require('./dbConfig')
+// const db = require('./dbConfig')
+
+const knexfile = require('../knexfile')
+const environment = process.env.NODE_ENV || 'development'
+const configuration = knexfile[environment]
+
+const db = knex(configuration)
 
 const server = express();
 
