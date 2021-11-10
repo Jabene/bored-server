@@ -36,7 +36,7 @@ server.post('/users', ( req, res ) => {
       first_name: user.firstName,
       last_name: user.lastName,
       email: user.email,
-      pword: user.password
+      password: user.password
     })
     .then(() => {
       res.json('Account Created!')
