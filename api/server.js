@@ -21,8 +21,9 @@ server.get('/', (req, res) => {
 })
 
 server.get('/users', (req, res) => {
-  db('users').select()
-    .then(users => response.json(users))
+  // db('users').select()
+  //   .then(users => response.json(users))
+  response.json('hello')
 })
 
 server.post('/users', (req, res) => {
