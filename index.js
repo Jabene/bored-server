@@ -5,4 +5,4 @@ const HOST = 'localhost';
 
 server.set('port', process.env.PORT || 8080)
 
-server.listen(server.get('port'), () => console.log(`Server running at ${HOST}:${PORT}`))
+server.listen(server.get('port'), () => console.log(`Server running`))
