@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
-// const db = require('./dbConfig')
 const knex = require('knex')
 const knexfile = require('../knexfile')
 const environment = process.env.NODE_ENV || 'development'
@@ -16,16 +15,21 @@ server.use(cors());
 server.use(helmet());
 server.use(express.json());
 
-server.get('/', (req, res) => {
-  res.send('Welcom to the Todo app server')
-})
 
-server.get('/users', (req, res) => {
+server.get('/users', ( req, res ) => {
   db('users').select()
-    .then(users => res.json(users))
+    .then(users => res.json( users ))
 })
 
-server.post('/users', (req, res) => {
+server.get('/log-in', ( req, res ) => {
+  const credentials = req.body
+  db('users').select()
+    .where('email', credentials.email)
+    .where('password', credentials.password)
+    .then(user => res.json( user ))
+})
+
+server.post('/users', ( req, res ) => {
   const user = request.body
   db('users')
     .insert({
