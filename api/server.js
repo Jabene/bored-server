@@ -21,12 +21,13 @@ server.get('/users', ( req, res ) => {
     .then(users => res.json( users ))
 })
 
-server.post('/log-in', ( req, res ) => {
-  const credentials = req.body
+server.get('/log-in/:email/:password', ( req, res ) => {
+  const email = req.params.email
+  const password = req.params.password
   db('users')
     .where({
-      email: credentials.email,
-      password: credentials.password
+      email: email,
+      password: password
     })
     .select()
     .then(user => res.json( user ))
