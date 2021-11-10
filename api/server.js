@@ -21,7 +21,7 @@ server.get('/users', ( req, res ) => {
     .then(users => res.json( users ))
 })
 
-server.get('/log-in', ( req, res ) => {
+server.post('/log-in', ( req, res ) => {
   const credentials = req.body
   db('users')
     .where('email', credentials.email)
