@@ -45,25 +45,19 @@ server.post('/users', ( req, res ) => {
     .then(() => res.json('Account Created!'))
 })
 
-server.post('/activity/:userId', ( req, res ) => {
+server.post( '/activity/:userId', ( req, res ) => {
   const activity = req.body
-  return db('activities')
+  return db( 'activities' )
     .insert({
       activity: activity.activity,
       participants: activity.participants,
       link: activity.link,
       type: activity.type
-    }, 'id')
-    .then( id => {
-      addJoin( id, req.params.userId )
-      console.log( id, req.params.userId)
-    })
-    .then( () => {
-      res.json('Appointment Saved!')
-    })
+    }, "id")
+    .then( id => res.json( id ))
 })
 
-const addJoin = (activityId, userId) => {
+const addJoin = ( activityId, userId ) => {
   db('join')
     .insert({
       activity: activityId,
