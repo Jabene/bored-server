@@ -47,7 +47,7 @@ server.post('/users', ( req, res ) => {
 
 server.post('/activity/:userId', ( req, res ) => {
   const activity = req.body
-  db('activities')
+  return db('activities')
     .insert({
       activity: activity.activity,
       participants: activity.participants,
@@ -56,15 +56,20 @@ server.post('/activity/:userId', ( req, res ) => {
     })
     .returning('id')
     .then( id => {
-      db('join')
-        .insert({
-          activity: 1,
-          user: 2
-        })
+      addJoin( id, req.params.userId )
+      console.log( id, req.params.userId)
     })
     .then( () => {
       res.json('Appointment Saved!')
     })
 })
+
+const addJoin = (activityId, userId) => {
+  db('join')
+    .insert({
+      activity: activityId,
+      user: userId
+    })
+}
 
 module.exports = server;
