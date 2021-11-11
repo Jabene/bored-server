@@ -42,13 +42,14 @@ server.post('/users', ( req, res ) => {
 
 server.post( '/activity/:userId', ( req, res ) => {
   const activity = req.body
-  return db( 'activities' )
+  const userId = req.params.userId
+  return db('activities')
     .insert({
       activity: activity.activity,
       participants: activity.participants,
       link: activity.link,
       type: activity.type,
-      user_id: +req.params.userId
+      user_id: +userId
     })
     .then( res.json('Activity Posted'))
 })
