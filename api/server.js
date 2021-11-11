@@ -51,7 +51,7 @@ server.post( '/activity/:userId', ( req, res ) => {
       type: activity.type,
       user_id: +userId
     })
-    .then( res.json('Activity Posted'))
+    .then( res.json(`${userId}`))
 })
 
 // server.post( '/join', ( req, res ) => {
