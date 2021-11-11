@@ -53,7 +53,8 @@ server.post('/activity/:userId', ( req, res ) => {
       participants: activity.participants,
       link: activity.link,
       type: activity.type
-    }, 'id')
+    })
+    .returning('id')
     .then( id => {
       db('join')
         .insert({
