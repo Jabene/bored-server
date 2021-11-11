@@ -43,7 +43,7 @@ server.post('/users', ( req, res ) => {
 server.post( '/activity/:userId', ( req, res ) => {
   const activity = req.body
   const userId = req.params.userId
-  return db('activities')
+  db('activities')
     .insert({
       activity: activity.activity,
       participants: activity.participants,
