@@ -48,12 +48,13 @@ server.post('/users', ( req, res ) => {
 server.post( '/activity/:userId', ( req, res ) => {
   const activity = req.body
   return db( 'activities' )
+    .returning( 'id' )
     .insert({
       activity: activity.activity,
       participants: activity.participants,
       link: activity.link,
       type: activity.type
-    }, "id")
+    })
     .then( id => res.json( id ))
 })
 
