@@ -53,8 +53,7 @@ server.post('/activity/:userId', ( req, res ) => {
       participants: activity.participants,
       link: activity.link,
       type: activity.type
-    })
-    .returning('id')
+    }, 'id')
     .then( id => {
       addJoin( id, req.params.userId )
       console.log( id, req.params.userId)
