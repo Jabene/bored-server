@@ -65,7 +65,7 @@ server.post( '/join', ( req, res ) => {
       activity: ids.activity,
       user: ids.user
     })
-    .then( response.json("Join Created"))
+    .then( res.json("Join Created"))
 })
 
 
