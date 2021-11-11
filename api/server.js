@@ -62,7 +62,7 @@ server.post('/activity/:userId', ( req, res ) => {
         })
     })
     .then( () => {
-      response.json('Appointment Saved!')
+      res.json('Appointment Saved!')
     })
 })
 
