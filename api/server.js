@@ -43,15 +43,14 @@ server.post('/users', ( req, res ) => {
 server.post( '/activity/:userId', ( req, res ) => {
   const activity = req.body
   return db( 'activities' )
-    .returning( 'id' )
     .insert({
       activity: activity.activity,
       participants: activity.participants,
       link: activity.link,
       type: activity.type,
-      user_id: req.params.userId
+      user_id: +req.params.userId
     })
-    .then( id => res.json( id ))
+    .then( response.json('Activity Posted'))
 })
 
 // server.post( '/join', ( req, res ) => {
