@@ -57,12 +57,20 @@ server.post( '/activity/:userId', ( req, res ) => {
     .then( id => res.json( id ))
 })
 
-const addJoin = ( activityId, userId ) => {
+server.post( '/join', ( req, res ) => {
+  const ids = req.body
   db('join')
     .insert({
-      activity: activityId,
-      user: userId
+      activity: ids.activity,
+      user: ids.user
     })
+    .then( response.json("Join Created"))
+})
+
+
+
+const addJoin = ( activityId, userId ) => {
+
 }
 
 module.exports = server;
