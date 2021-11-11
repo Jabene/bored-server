@@ -58,8 +58,8 @@ server.post('/activity/:userId', ( req, res ) => {
     .then( id => {
       db('join')
         .insert({
-          activity: id,
-          user: req.params.userId
+          activity: 1,
+          user: 2
         })
     })
     .then( () => {
