@@ -69,7 +69,7 @@ server.get( '/activities/:userId', ( req, res ) => {
   db('activities')
     .select()
     .where({ user_id: userId })
-    .then(activities => res.json( activities )
+    .then(activities => res.json( activities ))
 })
 
 module.exports = server;
