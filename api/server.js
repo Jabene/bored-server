@@ -16,11 +16,6 @@ server.use(helmet());
 server.use(express.json());
 
 
-server.get('/users', ( req, res ) => {
-  db('users').select()
-    .then(users => res.json( users ))
-})
-
 server.get('/log-in/:email/:password', ( req, res ) => {
   const email = req.params.email
   const password = req.params.password
@@ -53,25 +48,28 @@ server.post( '/activity/:userId', ( req, res ) => {
       activity: activity.activity,
       participants: activity.participants,
       link: activity.link,
-      type: activity.type
+      type: activity.type,
+      user_id: req.params.userId
     })
     .then( id => res.json( id ))
 })
 
-server.post( '/join', ( req, res ) => {
-  const ids = req.body
-  db('join')
-    .insert({
-      activity: ids.activity,
-      user: ids.user
-    })
-    .then( res.json("Join Created"))
+// server.post( '/join', ( req, res ) => {
+//   const ids = req.body
+//   db('join')
+//     .insert({
+//       activity: ids.activity,
+//       user: ids.user
+//     })
+//     .then( res.json("Join Created"))
+// })
+
+server.get( '/activities/:userId', ( req, res ) => {
+  const userId = req.params.userId
+  db('activities')
+    .select()
+    .where({ user_id: userId })
+    .then(activities => res.json( activities )
 })
-
-
-
-const addJoin = ( activityId, userId ) => {
-
-}
 
 module.exports = server;
