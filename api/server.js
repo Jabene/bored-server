@@ -54,22 +54,22 @@ server.post( '/activity/:userId', ( req, res ) => {
     .then( res.json(`${userId}`))
 })
 
-// server.post( '/join', ( req, res ) => {
-//   const ids = req.body
-//   db('join')
-//     .insert({
-//       activity: ids.activity,
-//       user: ids.user
-//     })
-//     .then( res.json("Join Created"))
-// })
-
 server.get( '/activities/:userId', ( req, res ) => {
   const userId = req.params.userId
   db('activities')
     .select()
     .where({ user_id: userId })
     .then(activities => res.json( activities ))
+})
+
+server.delete( '/activities/:activityId', ( req, res ) => {
+  const id = +req.params.activityId
+  db('activities').select()
+    .where( 'id', id )
+    .del()
+    .then( () => {
+      res.json('Activity Deleted!')
+    })
 })
 
 module.exports = server;
